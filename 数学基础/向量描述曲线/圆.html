@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas width="1000" height="1000"></canvas>
+  <script src="./../../vector2d.js"></script>
+  <script src="./../../draw.js"></script>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+    const { width, height } = canvas
+    ctx.translate(0.5 * width, 0.5 * height)
+    ctx.scale(1, -1)
+
+    const TUA_SEGMENTS = 60
+    const TUA = Math.PI * 2
+
+    function arc(x0, y0, raduis, startAng = 0, endAng = Math.PI * 2) {
+      const ang = Math.min(TUA, endAng - startAng)
+      const ret = ang === TUA ? [] : [[x0, y0]]
+      const segments = Math.round(TUA_SEGMENTS * ang / TUA)
+
+      for (let i = 0; i < segments; i++) {
+        const x = x0 + raduis * Math.cos(startAng + ang * i / segments)
+        const y = y0 + raduis * Math.sin(startAng + ang * i / segments)
+        ret.push([x, y])
+      }
+
+      return ret
+    }
+
+    const c1 = arc(0, 0, 100, Math.PI * 2 / 3, Math.PI)
+
+    // draw(c1)
+
+
+    function ellipse(x0, y0, raduisX, raduisY, startAng = 0, endAng = Math.PI * 2) {
+      const ang = Math.min(TUA, endAng - startAng)
+      const ret = ang === TUA ? [] : [[x0, y0]]
+      const segments = Math.round(TUA_SEGMENTS * ang / TUA)
+
+      for (let i = 0; i <= segments; i++) {
+        const x = x0 + raduisX * Math.cos(startAng + ang * i / segments)
+        const y = y0 + raduisY * Math.sin(startAng + ang * i / segments)
+        ret.push([x, y])
+      }
+
+      return ret
+    }
+
+    const e1 = ellipse(0, 0, 100, 50)
+    console.log(e1)
+
+    draw(e1)
+  </script>
+</body>
+</html>

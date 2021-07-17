@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas></canvas>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const context = canvas.getContext('2d')
+
+    var g1 = context.createLinearGradient(0, 0, 0, 300);
+    g1.addColorStop(0, '#E55D87'); 
+    g1.addColorStop(1, '#5FC3E4');
+    context.fillStyle = g1;
+    context.fillRect(0, 0, 400, 300);
+  </script>
+</body>
+</html>

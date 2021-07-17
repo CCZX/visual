@@ -10,7 +10,9 @@
 
 SVG 坐标系和 Canvas 坐标系完全一样，都是以图像左上角为原点，x 轴向右，y 轴向下的左手坐标系。而且在默认情况下，SVG 坐标与浏览器像素对应，所以 100、50、40 的单位就是 px，也就是像素，不需要特别设置。
 
-通过给SVG设置 viewbox 属性可以改变SVG的坐标。
+通过给SVG设置 viewbox 属性可以改变SVG的坐标。通过viewbox可以设置可视区的坐标大小，并且可视区会铺满整个SVG的画布大小。
+
+viewbox属性解析：https://www.zhangxinxu.com/wordpress/2014/08/svg-viewport-viewbox-preserveaspectratio/
 
 ## 创建 svg 元素
 

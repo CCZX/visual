@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas width="500" height="500"></canvas>
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0); //起始点
+    ctx.quadraticCurveTo(100, 100, 400, 10);// cx、cy 是控制点的坐标，x、y 是终点坐标
+    ctx.stroke();
+  </script>
+</body>
+</html>

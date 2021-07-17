@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./../../vector2d.js"></script>
+  <script src="./../../draw.js"></script>
+</head>
+<body>
+  <canvas width="500" height="500"></canvas>
+
+  <script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    ctx.translate(0, canvas.height)
+    ctx.scale(1, -1)
+
+    const points = [new Vector2D(0, 100)];
+    for(let i = 1; i <= 4; i++) {
+      const p = points[0].copy().rotate(i * Math.PI * 0.4);
+      points.push(p);
+    }
+
+
+    const polygon = [
+      ...points,
+    ];
+
+    window.aa = polygon
+
+    console.log(polygon)
+
+    // 绘制正五边形
+    ctx.save();
+    ctx.translate(-128, 0);
+    draw(ctx, polygon);
+    ctx.restore();
+
+    const stars = [
+      points[0],
+      points[2],
+      points[4],
+      points[1],
+      points[3],
+    ];
+
+    // 绘制正五角星
+    ctx.save();
+    ctx.translate(128, 0);
+    draw(ctx, stars);
+    ctx.restore();
+  </script>
+</body>
+</html>
