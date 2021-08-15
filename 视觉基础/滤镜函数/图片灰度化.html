@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./../../utils/transferImg.js"></script>
+</head>
+
+<body>
+  <canvas id="paper" width="0" height="0"></canvas>
+
+  <script>
+
+
+    const canvas = document.querySelector('canvas');
+    const context = canvas.getContext('2d');
+
+    (async function () {
+      // 异步加载图片
+      const img = await loadImage('https://p2.ssl.qhimg.com/d/inn/4b7e384c55dc/girl1.jpg');
+      const { width, height } = img
+      // 获取图片的 imageData 数据对象
+      const imageData = getImageData(img);
+      canvas.width = img.width
+      canvas.height = img.height
+
+      // 遍历 imageData 数据对象
+      traverse(imageData, ({ r, g, b, a }) => { // 对每个像素进行灰度化处理
+        const v = 0.126 * r + 0.7152 * g + 0.0722 * b;
+        return [0.126 * r, 0.7152 * g, 0.0722 * b, a]
+        // return [v, v, v, a];
+      });
+      // 更新canvas内容
+      context.putImageData(imageData, 0, 0);
+    }());
+  </script>
+
+  <!-- <script>
+    function loadImage(src) {
+      const img = new Image()
+      img.crossOrigin = 'anonymous'
+
+      return new Promise((r) => {
+        img.onload = () => {
+          r(img)
+        }
+        img.src = src
+      })
+    }
+
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    const canvasAddImage = async () => {
+      const img = await loadImage('https://p2.ssl.qhimg.com/d/inn/4b7e384c55dc/girl1.jpg')
+
+      const { width, height } = img
+
+      const imgData = ctx.getImageData(0, 0, width, height)
+      console.log(imgData)
+
+      canvas.width = width
+      canvas.height = height
+
+      ctx.drawImage(imgData, 0, 0)
+    }
+
+    canvasAddImage()
+
+    function getImageData(img, rect = [0, 0, img.width, img.height]) {
+      const canvas = new OffscreenCanvas(img.width, img.height);
+      const context = canvas.getContext('2d');
+      context.drawImage(img, 0, 0);
+      return context.getImageData(...rect);
+    }
+
+
+  </script> -->
+</body>
+
+</html>

@@ -67,6 +67,10 @@
     const vPosition = gl.getAttribLocation(program, 'position');
     gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(vPosition);
+    
+    // const vPosition = gl.getAttribLocation(program, 'position');获取顶点着色器中的position变量的地址
+    // gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);给变量设置长度和类型
+    // gl.enableVertexAttribArray(vPosition);激活这个变量
 
     // 开始绘制
     gl.clear(gl.COLOR_BUFFER_BIT);

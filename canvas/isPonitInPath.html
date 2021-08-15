@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas width="512" height="512"></canvas>
+  <script>
+    const c = document.querySelector('canvas')
+    const ctx = c.getContext('2d')
+
+    // ctx.beginPath()
+    // ctx.rect(100, 100, 100, 100)
+    // ctx.fill()
+
+    function drawRect(color) {
+      ctx.rect(100, 100, 100, 100)
+      ctx.fillStyle = color
+      ctx.fill()
+    }
+
+    function drawCircle(color) {
+      ctx.beginPath()
+      ctx.arc(50, 50, 100, 0, Math.PI * 2)
+      ctx.fillStyle = '#000'
+      ctx.fill()
+    }
+
+    c.addEventListener('mousemove', (e) => {
+      const x = e.clientX - c.getBoundingClientRect().left;
+      const y = e.clientY - c.getBoundingClientRect().top;
+      if (ctx.isPointInPath(x, y)) {
+        drawRect('#000')
+        drawCircle('#000')
+      } else {
+        drawRect('#0f0')
+        drawCircle('#0f0')
+      }
+    })
+
+  </script>
+</body>
+</html>
